@@ -1,7 +1,22 @@
 name: Branch workflow control
+
 on: 
   push:  
     branches:
-      -preparation
-      -development
+      - preparation
+      - development
 
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Thank you for opening a pull request! We will review it as soon as possible.
