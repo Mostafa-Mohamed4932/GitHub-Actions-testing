@@ -17,6 +17,6 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
+          pull-request-number: ${{ github.event.pull_request.number }}
           body: |
             Thank you for opening a pull request! We will review it as soon as possible.
